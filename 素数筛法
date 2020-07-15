@@ -1,0 +1,38 @@
+#include<bits/stdc++.h>
+#include<math.h>
+using namespace std;
+const int MAX=10001;
+vector<int>prime;//保存质数
+bool flag[MAX];//保存标记
+int main()
+{
+    for(int i=0;i<MAX;i++)
+        flag[i]=true;//素数
+    flag[0]=false;//非素数
+    flag[1]=false;//非素数
+    for(int i=2;i<MAX;i++){
+        if(flag[i]==false)//非素数
+            continue;
+        if(flag[i]==true){//i是素数
+            prime.push_back(i);
+            for(int k=i*i;k<MAX;k+=i)
+                flag[k]=false;//素数的倍数为非素数
+        }
+    }
+    int n;
+    while(cin>>n){
+        bool tag=false;
+        for(int i=0;i<prime.size()&&prime[i]<n;i++){
+            if(prime[i]%10==1)
+                {
+                    cout<<prime[i]<<" ";
+                    tag=true;
+                }
+        }
+    if(tag==false)
+        cout<<"-1";
+    cout<<endl;
+
+    }
+    return 0;
+}
